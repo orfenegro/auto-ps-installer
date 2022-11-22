@@ -23,7 +23,7 @@ $64bit_softwares = Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVers
 
 $all_softwares = $32bit_softwares+$64bit_softwares	
 
-$softwareName = "Battle*"
+$softwareName = "*shot*"
 
 if ( $all_softwares.DisplayName -like "$softwareName*"){
     Write-Output "Software is already installed"
@@ -31,7 +31,12 @@ if ( $all_softwares.DisplayName -like "$softwareName*"){
     Exit;
 } else {
     Write-Output "Software not installed. Proceeding with installation"
+
+    $pathvargs = {C:\Users\faruk\Downloads\shotcut-win64-221025.exe /S /v/qn }
+    Invoke-Command -ScriptBlock $pathvargs
+    
 }
+
 
 
 #Download the file at the specified location
@@ -62,6 +67,6 @@ Invoke-Command -ScriptBlock $pathvargs
 veya
 
 2)
-Start-Process -Wait -FilePath "\full\path\setup.exe" -ArgumentList '/S','/v','/qn' -passthru
+Start-Process -Wait -FilePath "C:\Users\faruk\Downloads\OBS-Studio-28.1.2-Full-Installer-x64.exe" -ArgumentList '/S','/v','/qn' -passthru
 
 #>
