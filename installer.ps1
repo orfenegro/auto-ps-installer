@@ -8,7 +8,13 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 Detaylı bilgi:
 
 https://learn.microsoft.com/tr-tr/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3
+
 #>
+
+$directoryRead = Read-Host -Prompt "kurulacak programlarin oldugu klasoru girin"
+$fileNames = Get-ChildItem $directory -Recurse -include *.txt,*.msi | ForEach-Object {$_.name}
+
+<#
 Try{
 	Start-Transcript -Path "C:\automation\logs\notepad++_install.log" -Force -ErrorAction Stop
 }catch{
@@ -37,10 +43,12 @@ if ( $all_softwares.DisplayName -like "$softwareName*"){
     
 }
 
+#>
 
-
+#Get-ChildItem c:\users\faruk | ForEach-Object {$_.name}
 #Download the file at the specified location
 <#
+
 if (-not ( Test-Path $installation_file)){
 
     New-Item $destination_dir -ItemType Directory -Force
